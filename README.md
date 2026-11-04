@@ -112,4 +112,4 @@ npx electron-builder --win portable
 * **Авторы прошивок:**
   * Bruce 1.16 и 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
   * Launcher port for flux: [@wilas0](https://t.me/wilas0)
-  * Flipper port for flux: [@d1metri1](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
+  * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)

@@ -23,7 +23,7 @@
 1. **Download:** Download the latest `FluxFlasher.exe` from the **Releases** section of this repository.
 2. **Run:** Double-click the `.exe` file to launch the application. No installation is required.
 3. **Select Firmware:** Choose a `.bin` file from your computer, download one from the built-in online catalog, or simply drag & drop it into the app window.
-4. **Connect Device:** Plug in your ESP32-S3 board. Make sure you have the necessary USB drivers installed (e.g., CH340 or CP210x).
+4. **Connect Device:** Plug in your FLUX.
 5. **Flash:** Select the correct COM port and click **"Install"**.
 6. **Wait:** Watch the progress bar. Once it's done, you'll see a green "✅ Success!" message. Your device is ready!
 
@@ -80,7 +80,7 @@ npx electron-builder --win portable
 1. **Скачайте:** Скачайте последнюю версию `FluxFlasher.exe` в разделе **Releases** этого репозитория.
 2. **Запустите:** Дважды кликните по `.exe` файлу. Установка не требуется.
 3. **Выберите прошивку:** Укажите `.bin` файл на вашем компьютере, скачайте его из встроенного онлайн-каталога или просто перетащите в окно программы.
-4. **Подключите устройство:** Подключите плату ESP32-S3 по USB. Убедитесь, что у вас установлены необходимые драйверы (например, CH340 или CP210x).
+4. **Подключите устройство:** Подключите FLUX по USB.
 5. **Прошейте:** Выберите правильный COM-порт и нажмите кнопку **«Установить»**.
 6. **Готово:** Следите за шкалой прогресса. После завершения появится зеленая надпись «✅ Успешно!». Устройство готово к работе.
 

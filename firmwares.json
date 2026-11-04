@@ -37,8 +37,8 @@
   },
   {
     "name": "Marauder BETA",
-    "desc": "Бета-версия прошивки Marauder для Flux (GPS + Display Fix)",
-    "desc_en": "Beta version of Marauder firmware for Flux (GPS + Display Fix)",
+    "desc": "Бета-версия прошивки Marauder для Flux",
+    "desc_en": "Beta version of Marauder firmware for Flux",
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/ESP32Marauder_v1.18.0_FLUX1_r3_gps_displayfix.1.bin",
     "author": "@wilas0",
     "authorLink": "https://t.me/wilas0",

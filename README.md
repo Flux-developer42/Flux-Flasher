@@ -4,7 +4,7 @@
 
 ---
 
-## 🇬🇧 English
+## in English
 
 ### ✨ Features
 
@@ -29,10 +29,27 @@
 
 ### 🛠 For Developers
 
-If you want to build the application from source or modify it:
+* If you want to build the application from source or modify it:
 
-1. **Prerequisites:** Install [Node.js](https://nodejs.org/) and [Python](https://www.python.org/) (with `esptool` installed via `pip install esptool`).
-2. **Clone the repository:**
-   ```bash
-   git clone https://github.com/winkirsel509-del/Flux-Flasher.git
-   cd Flux-Flasher
+* 1. **Prerequisites:** Install [Node.js](https://nodejs.org/) and [Python](https://www.python.org/) (with `esptool` installed via `pip install esptool`).
+* 2. **Clone the repository:**
+git clone https://github.com/winkirsel509-del/Flux-Flasher.git
+cd Flux-Flasher
+
+* 3. Install dependencies:
+npm install
+
+* 4. Run in dev mode:
+npm start
+
+* 5.Build the .exe:
+npx electron-builder --win portable
+
+## 👥 Authors & Credits
+
+* **Program Developer:** DeepSeek AI
+* **Project Owner / Developer:** [@Shk1pEr42](https://t.me/Shk1pEr42)
+* **Firmware Authors:**
+  * Bruce 1.16 & 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
+  * Launcher port for flux: [@wilas0](https://t.me/wilas0)
+  * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)

@@ -1,0 +1,36 @@
+{
+  "name": "flux-flasher",
+  "version": "3.0.2",
+  "description": "Flux-Flasher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win portable"
+  },
+  "author": "winki",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1",
+    "electron-rebuild": "^3.2.9"
+  },
+  "dependencies": {
+    "serialport": "^12.0.0"
+  },
+  "build": {
+    "appId": "com.winki.esp32flasher",
+    "productName": "FluxFlasher",
+    "copyright": "Copyright © 2026 winki. All rights reserved.",
+    "artifactName": "${productName} ${version}.${ext}",
+    "icon": "C:\\Users\\winki\\Desktop\\esp32-flasher\\ico\\Flux_Flasher.ico",
+    "asar": true,
+    "asarUnpack": [
+      "**/node_modules/serialport/**/*",
+      "**/node_modules/@serialport/**/*"
+    ],
+    "win": {
+      "target": "portable",
+      "icon": "C:\\Users\\winki\\Desktop\\esp32-flasher\\ico\\Flux_Flasher.ico"
+    }
+  }
+}

@@ -54,6 +54,7 @@ npx electron-builder --win portable
   * Launcher port for flux/Marauder: [@wilas0](https://t.me/wilas0)
   * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
 
+ ## Link to the Telegram channel: https://t.me/FluxFlasher
 
 
 # Flux Flasher
@@ -113,3 +114,5 @@ npx electron-builder --win portable
   * Bruce 1.16 и 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
   * Launcher port for flux/Marauder: [@wilas0](https://t.me/wilas0)
   * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
+ 
+## Ссылка на телеграм канал:https://t.me/FluxFlasher

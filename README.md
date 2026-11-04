@@ -1,6 +1,6 @@
-# Flux ESP32-S3 Flasher
+# Flux Flasher
 
-**A lightweight, user-friendly desktop application for flashing firmware to ESP32-S3 boards designed in the Flux ecosystem.**
+**A lightweight, user-friendly desktop application for flashing firmware to Flux.**
 
 ---
 
@@ -33,8 +33,8 @@
 
 * 1. **Prerequisites:** Install [Node.js](https://nodejs.org/) and [Python](https://www.python.org/) (with `esptool` installed via `pip install esptool`).
 * 2. **Clone the repository:**
-git clone https://github.com/winkirsel509-del/Flux-Flasher.git
-cd Flux-Flasher
+   git clone https://github.com/winkirsel509-del/Flux-Flasher.git
+  cd Flux-Flasher
 
 * 3. Install dependencies:
 npm install
@@ -53,3 +53,63 @@ npx electron-builder --win portable
   * Bruce 1.16 & 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
   * Launcher port for flux: [@wilas0](https://t.me/wilas0)
   * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
+
+
+
+# Flux ESP32-S3 Flasher
+
+**Легкое и удобное десктопное приложение для прошивки Flux.**
+
+---
+## На Русском
+
+## ✨ Возможности
+
+* **Современный интерфейс:** Чистый, анимированный дизайн с плиточными кнопками и плавными переходами.
+* **Два языка:** Полный перевод интерфейса на русский и английский языки (включая инструкции к прошивкам).
+* **Смена темы:** Выбор между темной и светлой темой.
+* **Поддержка Drag & Drop:** Просто перетащите `.bin` файл в окно программы, чтобы начать прошивку.
+* **Онлайн-каталог прошивок:** Скачивайте актуальные прошивки прямо из репозитория, не выходя из программы.
+* **Встроенные инструкции:** Пошаговые руководства для конкретных прошивок (например, для порта Flipper Zero) отображаются прямо в приложении.
+* **Кастомный выбор COM-порта:** Красивое анимированное выпадающее меню для выбора порта.
+* **Работает локально:** Приложение не требует интернета для прошивки. Ваши файлы и данные устройства остаются на вашем компьютере.
+* **Пасхалка:** 5 кликов по знаку `?` в правом нижнем углу могут открыть небольшой сюрприз... 🦖
+
+## 🚀 Как использовать
+
+1. **Скачайте:** Скачайте последнюю версию `FluxFlasher.exe` в разделе **Releases** этого репозитория.
+2. **Запустите:** Дважды кликните по `.exe` файлу. Установка не требуется.
+3. **Выберите прошивку:** Укажите `.bin` файл на вашем компьютере, скачайте его из встроенного онлайн-каталога или просто перетащите в окно программы.
+4. **Подключите устройство:** Подключите плату ESP32-S3 по USB. Убедитесь, что у вас установлены необходимые драйверы (например, CH340 или CP210x).
+5. **Прошейте:** Выберите правильный COM-порт и нажмите кнопку **«Установить»**.
+6. **Готово:** Следите за шкалой прогресса. После завершения появится зеленая надпись «✅ Успешно!». Устройство готово к работе.
+
+## 🛠 Для разработчиков
+
+Если вы хотите собрать приложение из исходников или изменить его:
+
+1. **Что нужно:** Установите [Node.js](https://nodejs.org/) и [Python](https://www.python.org/) (с установленной библиотекой `esptool` через `pip install esptool`).
+
+2. **Склонируйте репозиторий:**
+   `git clone https://github.com/Flux-developer42/Flux-Flasher.git`
+   `cd Flux-Flasher`
+
+3. **Установите зависимости:**
+   `npm install`
+
+4. **Запустите в режиме разработки:**
+   `npm start`
+
+5. **Соберите `.exe`:**
+   `npx electron-builder --win portable`
+
+Готовый `.exe` файл появится в папке `dist`.
+
+## 👥 Авторы и благодарности
+
+* **Разработчик программы:** DeepSeek AI
+* **Владелец проекта / Разработчик:** [@Shk1pEr42](https://t.me/Shk1pEr42)
+* **Авторы прошивок:**
+  * Bruce 1.16 и 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
+  * Launcher port for flux: [@wilas0](https://t.me/wilas0)
+  * Flipper port for flux: [@d1metri1](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)

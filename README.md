@@ -51,7 +51,7 @@ npx electron-builder --win portable
 * **Project Owner / Developer:** [@Shk1pEr42](https://t.me/Shk1pEr42)
 * **Firmware Authors:**
   * Bruce 1.16 & 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
-  * Launcher port for flux: [@wilas0](https://t.me/wilas0)
+  * Launcher port for flux/Marauder: [@wilas0](https://t.me/wilas0)
   * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
 
 
@@ -111,5 +111,5 @@ npx electron-builder --win portable
 * **Владелец проекта / Разработчик:** [@Shk1pEr42](https://t.me/Shk1pEr42)
 * **Авторы прошивок:**
   * Bruce 1.16 и 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
-  * Launcher port for flux: [@wilas0](https://t.me/wilas0)
+  * Launcher port for flux/Marauder: [@wilas0](https://t.me/wilas0)
   * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)

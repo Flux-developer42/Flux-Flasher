@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Flux ESP32-S3 Flasher</title>
+    <style>
+        :root {
+            --bg-color: #1e1e24; --card-bg: #2b2b36; --text-main: #f1f5f9; --text-muted: #94a3b8;
+            --border-color: #475569; --btn-primary: #2563eb; --btn-success: #16a34a; --btn-secondary: #3f3f4e;
+            --font-size: 16px; --transition-speed: 0.3s;
+        }
+        [data-theme="light"] {
+            --bg-color: #f0f2f5; --card-bg: #ffffff; --text-main: #1a1a1a; --text-muted: #64748b;
+            --border-color: #cbd5e1; --btn-secondary: #e2e8f0;
+        }
+        * { box-sizing: border-box; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; transition: background var(--transition-speed), color var(--transition-speed), border-color var(--transition-speed); }
+        body { display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; background: var(--bg-color); color: var(--text-main); font-size: var(--font-size); overflow: hidden; }
+        
+        .step-container { animation: fadeIn 0.3s ease-in-out; width: 100%; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .card { 
+            background: var(--card-bg); border-radius: 24px; padding: 40px; width: 500px; max-width: 90vw; 
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2); text-align: center; position: relative; 
+            display: flex; flex-direction: column; animation: cardAppear 0.4s ease-out; 
+            
+            height: 480px;
+            transition: height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden;
+        }
+        @keyframes cardAppear { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+
+        h1 { font-size: 1.8rem; margin: 0 0 8px; text-align: center; }
+        .subtitle { color: var(--text-muted); font-size: 1rem; margin-bottom: 32px; }
+
+        .top-left-icon { position: absolute; top: 20px; left: 20px; cursor: pointer; color: var(--text-muted); transition: color 0.2s, transform 0.2s; z-index: 10; display: none; font-size: 24px; font-weight: bold; }
+        .top-left-icon:hover { color: var(--text-main); transform: scale(1.1); }
+        .top-left-icon.visible { display: block; animation: fadeIn 0.3s; }
+
+        .settings-icon { position: absolute; top: 20px; right: 20px; cursor: pointer; color: var(--text-muted); transition: color 0.2s, transform 0.3s; z-index: 10; font-size: 24px; }
+        .settings-icon:hover { color: var(--text-main); transform: rotate(90deg); }
+
+        /* Визуальная зона Drag & Drop */
+        .drag-zone {
+            border: 2px dashed var(--border-color);
+            border-radius: 16px;
+            padding: 12px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+            background: var(--bg-color);
+        }
+        .drag-zone.dragover {
+            border-color: var(--btn-primary);
+            background: rgba(37, 99, 235, 0.1);
+            transform: scale(1.02);
+        }
+        .drag-zone-text { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.3; }
+
+        .btn-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+        .btn-square { 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            aspect-ratio: 1 / 1; border: none; border-radius: 20px; font-size: 1rem; font-weight: 600; 
+            cursor: pointer; transition: transform 0.15s, background 0.2s; padding: 16px; text-align: center; 
+            position: relative; overflow: hidden; flex-shrink: 0; 
+            max-height: 100px;
+            width: 100%;
+        }
+        .btn-square:active { transform: scale(0.92); }
+        .btn-square:hover { filter: brightness(1.1); }
+        
+        .btn-primary { background: var(--btn-primary); color: white; }
+        .btn-success { background: var(--btn-success); color: white; }
+        .btn-secondary { background: var(--btn-secondary); color: var(--text-main); }
+        
+        .btn-square .icon { font-size: 24px; margin-bottom: 8px; line-height: 1; }
+        
+        .file-info { background: var(--bg-color); border: 2px dashed var(--border-color); border-radius: 12px; padding: 16px; margin-bottom: 24px; font-size: 0.9rem; color: var(--text-muted); word-break: break-all; transition: all 0.3s ease; flex-shrink: 0; }
+        .file-info.active { border-color: var(--btn-primary); color: var(--text-main); box-shadow: 0 0 15px rgba(37, 99, 235, 0.2); }
+
+        .list-wrapper {
+            flex: 1; overflow-y: auto; padding-right: 8px; margin-bottom: 10px;
+            display: flex; flex-direction: column; gap: 16px; min-height: 0; 
+        }
+        .list-wrapper::-webkit-scrollbar { width: 8px; }
+        .list-wrapper::-webkit-scrollbar-track { background: var(--bg-color); border-radius: 4px; }
+        .list-wrapper::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        .list-wrapper::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        .firmware-card { background: var(--bg-color); border: 2px solid var(--border-color); border-radius: 12px; padding: 16px; transition: all 0.2s; position: relative; text-align: left; flex-shrink: 0; display: flex; flex-direction: column; }
+        .firmware-card:hover { border-color: var(--btn-primary); }
+        .firmware-card .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
+        .firmware-card .card-desc { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 12px; }
+        .firmware-card .card-author { font-size: 0.85rem; margin-bottom: 12px; }
+        
+        .card-actions { display: flex; gap: 10px; margin-top: auto; flex-wrap: wrap; }
+        .card-btn { 
+            flex: 1; padding: 12px; border: none; border-radius: 8px; font-weight: 600; 
+            cursor: pointer; transition: all 0.3s ease; text-align: center; min-width: 120px; font-size: 0.9rem;
+        }
+        .card-btn:active { transform: scale(0.96); }
+        .btn-download { background: var(--btn-primary); color: white; }
+        .btn-download:hover { background: #1d4ed8; }
+        
+        .btn-instruction { 
+            background: #f59e0b; color: white; font-size: 0.9rem; letter-spacing: 1px;
+            animation: pulseInstruction 2s infinite; margin-top: 10px;
+        }
+        .btn-instruction:hover { background: #d97706; }
+        @keyframes pulseInstruction {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        .btn-extra { background: var(--btn-success); color: white; }
+        .btn-extra:hover { background: #15803d; }
+
+        .card-progress { display: none; width: 100%; height: 6px; background: var(--card-bg); border-radius: 3px; overflow: hidden; margin-top: 12px; }
+        .card-progress.active { display: block; }
+        .card-progress-fill { height: 100%; width: 0%; background: var(--btn-success); transition: width 0.1s; }
+
+        .status-area { margin: 10px 0; min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .progress-container { width: 100%; background: var(--bg-color); border-radius: 999px; height: 12px; margin-top: 16px; overflow: hidden; display: none; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2); }
+        .progress-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #2563eb, #3b82f6); border-radius: 999px; transition: width 0.2s ease; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.7; } 100% { opacity: 1; } }
+        
+        .result-success { color: #22c55e; font-size: 1.5rem; font-weight: 700; animation: popIn 0.5s ease; }
+        .result-error { color: #ef4444; font-size: 1.5rem; font-weight: 700; animation: popIn 0.5s ease; }
+        @keyframes popIn { 0% { transform: scale(0.5); opacity: 0; } 80% { transform: scale(1.05); } 100% { transform: scale(1); opacity: 1; } }
+        
+        /* Стили для КАСТОМНОГО селекта порта */
+        .custom-select-wrapper { position: relative; width: 100%; margin-bottom: 16px; user-select: none; }
+        .custom-select-trigger {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px; border-radius: 12px; border: 2px solid var(--border-color);
+            background: var(--bg-color); color: var(--text-main); font-size: 1rem; cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .custom-select-trigger:hover { border-color: var(--btn-primary); }
+        .custom-select-trigger.active { border-color: var(--btn-primary); box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); }
+        .custom-select-options {
+            position: absolute; top: 100%; left: 0; width: 100%;
+            background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 12px;
+            margin-top: 8px; z-index: 100; overflow: hidden;
+            max-height: 0; opacity: 0; visibility: hidden;
+            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s, visibility 0.3s;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        .custom-select-options.open { max-height: 200px; opacity: 1; visibility: visible; overflow-y: auto; }
+        .custom-option {
+            padding: 12px 14px; cursor: pointer; transition: background 0.2s;
+            text-align: left; border-bottom: 1px solid var(--border-color);
+        }
+        .custom-option:last-child { border-bottom: none; }
+        .custom-option:hover { background: var(--btn-primary); color: white; }
+        .custom-option.selected { background: var(--btn-secondary); font-weight: bold; }
+
+        /* Стили для кнопки Установить */
+        .btn-flash-main {
+            width: 100%; height: 50px; border-radius: 12px; border: none;
+            background: var(--btn-success); color: white; font-size: 1.1rem; font-weight: bold;
+            cursor: pointer; transition: transform 0.1s, background 0.2s;
+        }
+        .btn-flash-main:active { transform: scale(0.98); }
+        .btn-flash-main:hover { background: #15803d; }
+
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+        input[type=range]:focus { outline: none; }
+        input[type=range]::-webkit-slider-runnable-track { width: 100%; height: 8px; cursor: pointer; background: var(--bg-color); border-radius: 5px; border: 1px solid var(--border-color); transition: background 0.3s; }
+        input[type=range]::-webkit-slider-thumb { height: 20px; width: 20px; border-radius: 50%; background: var(--btn-primary); cursor: pointer; -webkit-appearance: none; margin-top: -7px; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 0 rgba(37, 99, 235, 0); }
+        input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); box-shadow: 0 0 10px rgba(37, 99, 235, 0.5); }
+
+        .secret-icon { position: fixed; bottom: 15px; right: 20px; font-size: 24px; font-weight: bold; color: var(--text-muted); opacity: 0.2; cursor: pointer; user-select: none; z-index: 100; transition: opacity 0.3s; }
+        .secret-icon:hover { opacity: 0.8; }
+
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); backdrop-filter: blur(4px); display: flex; justify-content: center; align-items: center; z-index: 200; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+        .modal.active { opacity: 1; pointer-events: auto; }
+        .modal-content { background: var(--card-bg); padding: 30px; border-radius: 20px; width: 450px; border: 1px solid var(--border-color); text-align: left; max-height: 90vh; overflow-y: auto; transform: translateY(20px) scale(0.95); opacity: 0; transition: transform 0.3s, opacity 0.3s; }
+        .modal.active .modal-content { transform: translateY(0) scale(1); opacity: 1; }
+        .modal-content h2 { margin-top: 0; text-align: center; }
+        .setting-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .setting-row label { font-weight: 500; }
+        
+        .toggle-group { display: flex; gap: 10px; }
+        .toggle-btn { 
+            width: 110px; padding: 10px 0; text-align: center; border-radius: 8px; 
+            border: 1px solid var(--border-color); background: var(--bg-color); color: var(--text-main); 
+            cursor: pointer; font-size: 0.9rem; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .toggle-btn:hover { border-color: var(--btn-primary); }
+        .toggle-btn:active { transform: scale(0.92); }
+        .toggle-btn.active { 
+            background: var(--btn-primary); color: white; border-color: var(--btn-primary); 
+            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+        }
+        
+        .guide-content { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.6; background: var(--bg-color); padding: 20px; border-radius: 12px; margin-top: 16px; border-left: 4px solid #f59e0b; }
+
+        .authors-content { 
+            margin-top: 16px; display: flex; flex-direction: column; gap: 12px; 
+            max-height: 400px; overflow-y: auto; padding-right: 8px; 
+        }
+        .authors-content::-webkit-scrollbar { width: 8px; }
+        .authors-content::-webkit-scrollbar-track { background: var(--bg-color); border-radius: 4px; }
+        .authors-content::-webkit-scrollbar-thumb { background: var(--border-color); border-radius: 4px; }
+        .authors-content::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        .author-card { background: var(--bg-color); padding: 16px; border-radius: 12px; border: 1px solid var(--border-color); text-align: left; flex-shrink: 0; }
+        .author-card h4 { margin: 0 0 6px; font-size: 1rem; color: var(--text-main); }
+        .author-card p { margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.5; }
+        .author-card a { color: var(--btn-primary); text-decoration: none; font-weight: bold; }
+        .author-card a:hover { text-decoration: underline; }
+        .thanks-text { color: var(--btn-success); font-weight: bold; }
+
+        /* Меню языков */
+        .lang-list { display: flex; flex-direction: column; gap: 10px; max-height: 300px; overflow-y: auto; }
+        .lang-item { 
+            padding: 14px; border-radius: 12px; border: 2px solid var(--border-color); 
+            background: var(--bg-color); cursor: pointer; text-align: left; transition: all 0.2s;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .lang-item:hover { border-color: var(--btn-primary); }
+        .lang-item.active { border-color: var(--btn-primary); background: var(--btn-secondary); font-weight: bold; }
+        .lang-search { 
+            width: 100%; padding: 14px; border-radius: 12px; border: 2px solid var(--border-color); 
+            margin-bottom: 16px; font-size: 1rem; outline: none; background: var(--bg-color); color: var(--text-main);
+        }
+        .lang-search:focus { border-color: var(--btn-primary); }
+        .future-note { text-align: center; color: var(--text-muted); font-size: 0.9rem; margin-top: 20px; font-style: italic; }
+
+        #dino-game-container { position: fixed; bottom: 0; left: 0; width: 100%; height: 120px; display: none; z-index: 50; background: var(--card-bg); border-top: 2px solid var(--border-color); box-shadow: 0 -5px 20px rgba(0,0,0,0.3); animation: slideUp 0.3s ease-out; }
+        #dino-canvas { width: 100%; height: 100%; }
+        #game-over-screen { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); display: none; flex-direction: row; align-items: center; justify-content: center; gap: 20px; color: white; font-family: monospace; }
+        #game-over-screen.active { display: flex; }
+        .go-text { font-size: 20px; font-weight: bold; }
+        .go-btn { padding: 10px 20px; font-size: 14px; cursor: pointer; font-weight: bold; background: var(--btn-primary); color: white; border: none; border-radius: 8px; }
+        .go-btn.close { background: #ef4444; }
+    </style>
+</head>
+<body>
+    <div class="secret-icon" onclick="handleSecretClick()">?</div>
+
+    <div class="card" id="mainCard">
+        <div class="top-left-icon" id="btnBack" onclick="goBack()">←</div>
+        <div class="settings-icon" onclick="toggleSettings()">⚙️</div>
+
+        <div class="card-left">
+            <h1 id="title">Flux ESP32-S3</h1>
+            <p class="subtitle" id="subtitle">Прошивка устройства</p>
+            <div id="fileInfo" class="file-info">Прошивка не выбрана</div>
+        </div>
+
+        <div class="card-right" style="flex: 1; display: flex; flex-direction: column; overflow: hidden;">
+            <div id="step-select" class="step-container" style="flex: none;">
+                <input type="file" id="fileInput" accept=".bin" style="display: none;">
+                
+                <div class="drag-zone" id="dropZone">
+                    <div class="drag-zone-text" id="dragText">Выберите файл с ПК, Скачайте онлайн или перетащите файл сюда</div>
+                    <div class="btn-grid">
+                        <button class="btn-square btn-primary" id="btnSelectLocal">
+                            <span class="icon">📂</span>
+                            <span id="btnLocalText">С ПК</span>
+                        </button>
+                        <button class="btn-square btn-success" id="btnDownloadFirmware">
+                            <span class="icon">🌐</span>
+                            <span id="btnOnlineText">Онлайн</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="step-online" class="step-container" style="display:none; flex: 1; flex-direction: column; overflow: hidden;">
+                <div class="status-text" style="margin-bottom: 16px; text-align: center; flex-shrink: 0;" id="onlineTitle">Выберите прошивку:</div>
+                <div class="list-wrapper" id="firmwareList"></div>
+            </div>
+
+            <div id="step-connect" class="step-container" style="display:none; flex: none;">
+                <div class="status-text" style="margin-bottom: 16px; text-align: center;" id="portTitle">Выберите COM-порт:</div>
+                
+                <div class="custom-select-wrapper">
+                    <div class="custom-select-trigger" id="customSelectTrigger">
+                        <span id="selectedPortText">Поиск портов...</span>
+                        <span>▼</span>
+                    </div>
+                    <div class="custom-select-options" id="customSelectOptions"></div>
+                </div>
+
+                <button class="btn-flash-main" id="btnFlash"><span id="btnFlashText">Установить</span></button>
+            </div>
+
+            <div id="step-flash" class="step-container" style="display:none; flex: none;">
+                <div class="status-area">
+                    <div class="status-text" id="flashStatus">Прошивка...</div>
+                    <div class="progress-container" id="progressContainer"><div class="progress-fill" id="progressFill"></div></div>
+                </div>
+            </div>
+
+            <div id="step-result" class="step-container" style="display:none; flex: none;">
+                <div class="status-area" id="resultText"></div>
+                <button class="btn-flash-main" id="btnRestart"><span id="btnRestartText">В начало</span></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Модальное окно инструкции -->
+    <div class="modal" id="guideModal">
+        <div class="modal-content">
+            <h2 id="guideTitle">Инструкция</h2>
+            <div class="guide-content" id="guideText"></div>
+            <button class="btn-flash-main" style="margin-top: 20px;" onclick="document.getElementById('guideModal').classList.remove('active')">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно авторов -->
+    <div class="modal" id="authorsModal">
+        <div class="modal-content">
+            <h2 id="authorsTitle">Авторы</h2>
+            <div class="authors-content" id="authorsListContainer">
+                <!-- Сюда будут загружаться карточки авторов -->
+            </div>
+            <button class="btn-flash-main" style="margin-top: 20px;" onclick="document.getElementById('authorsModal').classList.remove('active')" id="btnCloseAuthors">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- Модальное окно языков -->
+    <div class="modal" id="langModal">
+        <div class="modal-content">
+            <h2 id="langTitle">Язык</h2>
+            <input type="text" class="lang-search" id="langSearch" placeholder="Поиск языка..." oninput="filterLanguages(this.value)">
+            <div class="lang-list" id="langList"></div>
+            <p class="future-note" id="futureNote">В будущем здесь будут и другие языки</p>
+            <button class="btn-flash-main" style="margin-top: 20px;" onclick="document.getElementById('langModal').classList.remove('active')" id="btnCloseLang">Закрыть</button>
+        </div>
+    </div>
+
+    <div id="dino-game-container">
+        <canvas id="dino-canvas"></canvas>
+        <div id="game-over-screen">
+            <div><div class="go-text" id="go-title">GAME OVER</div><div class="go-score"><span id="go-score-text">Score</span>: <span id="go-score">0</span> | <span id="go-high-text">High</span>: <span id="go-high">0</span></div></div>
+            <button class="go-btn" id="btn-reset-dino" onclick="resetDinoGame()">Заново</button>
+            <button class="go-btn close" id="btn-close-dino" onclick="closeDinoGame()">Закрыть</button>
+        </div>
+    </div>
+
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <h2 id="settingsTitle">Настройки</h2>
+            <div class="setting-row">
+                <label id="lblTheme">Тема:</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn active" id="themeDark" onclick="setTheme('dark')">Тёмная</button>
+                    <button class="toggle-btn" id="themeLight" onclick="setTheme('light')">Светлая</button>
+                </div>
+            </div>
+            <div class="setting-row">
+                <label id="lblLang">Язык:</label>
+                <div class="toggle-group">
+                    <button class="toggle-btn" style="width: 100%;" onclick="closeSettingsAndOpenLang()" id="btnOpenLang">Сменить язык</button>
+                </div>
+            </div>
+            <div class="setting-row">
+                <label id="lblFont">Размер шрифта:</label>
+                <input type="range" min="12" max="24" value="16" id="fontSlider" oninput="setFontSize(this.value)" style="width: 120px; margin:0;">
+            </div>
+
+            <button class="toggle-btn" style="width: 100%; margin-bottom: 10px; padding: 12px;" onclick="closeSettingsAndOpenAuthors()" id="btnOpenAuthors">Авторы</button>
+
+            <button class="btn-flash-main" style="margin-top: 10px;" onclick="toggleSettings()" id="btnCloseSettings">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        const { ipcRenderer } = require('electron');
+
+        let loadedFirmwares = [];
+        let availablePorts = [];
+        let selectedPortValue = "";
+
+        const translations = {
+            ru: { 
+                title: "Flux ESP32-S3", subtitle: "Прошивка устройства", fileNotSelected: "Прошивка не выбрана", 
+                btnLocal: "С ПК", btnOnline: "Онлайн", onlineTitle: "Выберите прошивку:", portTitle: "Выберите COM-порт:", 
+                btnBack: "Назад", btnFlash: "Установить", btnRestart: "В начало", settings: "Настройки", 
+                lblTheme: "Тема:", lblLang: "Язык:", lblFont: "Размер шрифта:", 
+                themeDark: "Тёмная", themeLight: "Светлая", 
+                btnClose: "Закрыть", downloading: "Скачивание...", ready: "Готово:", errorDl: "Ошибка скачивания", 
+                flashing: "Прошивка...", connecting: "Подключение...", writing: "Запись:", success: "✅ Успешно!", error: "❌ Ошибка!", 
+                noPorts: "Нет портов (подключите плату)", searchPorts: "Поиск портов...",
+                btnDownload: "Скачать", btnInstruction: "ИНСТРУКЦИЯ", btnExtra: "Доп. файлы",
+                gameOver: "GAME OVER", btnRestartGame: "Заново", btnCloseGame: "Закрыть",
+                score: "Счет:", highScore: "Рекорд:", author: "Автор:", btnAuthors: "Авторы",
+                authorsTitle: "Авторы", authDev: "Разработчик программы", authDevText: "DeepSeek AI (Искусственный интеллект)<br>Код, интерфейс, логика.",
+                authOwner: "Разработчик / Владелец", authOwnerText: "Идейный вдохновитель и тестировщик.<br>Telegram: ",
+                authThanks: "Спасибо!", btnChangeLang: "Сменить язык", langTitle: "Язык", searchLang: "Поиск языка...", futureLang: "В будущем здесь будут и другие языки",
+                dragText: "Выберите файл с ПК, Скачайте онлайн или перетащите файл сюда"
+            },
+            en: { 
+                title: "Flux ESP32-S3", subtitle: "Device Firmware", fileNotSelected: "No firmware selected", 
+                btnLocal: "From PC", btnOnline: "Online", onlineTitle: "Select firmware:", portTitle: "Select COM port:", 
+                btnBack: "Back", btnFlash: "Install", btnRestart: "Restart", settings: "Settings", 
+                lblTheme: "Theme:", lblLang: "Language:", lblFont: "Font Size:", 
+                themeDark: "Dark", themeLight: "Light", 
+                btnClose: "Close", downloading: "Downloading...", ready: "Ready:", errorDl: "Download error", 
+                flashing: "Flashing...", connecting: "Connecting...", writing: "Writing:", success: "✅ Success!", error: "❌ Error!", 
+                noPorts: "No ports found (connect board)", searchPorts: "Searching ports...",
+                btnDownload: "Download", btnInstruction: "INSTRUCTION", btnExtra: "Extra files",
+                gameOver: "GAME OVER", btnRestartGame: "Restart", btnCloseGame: "Close",
+                score: "Score:", highScore: "High:", author: "Author:", btnAuthors: "Authors",
+                authorsTitle: "Authors", authDev: "Program Developer", authDevText: "DeepSeek AI (Artificial Intelligence)<br>Code, UI, logic.",
+                authOwner: "Developer / Owner", authOwnerText: "Ideological inspirer and tester.<br>Telegram: ",
+                authThanks: "Thanks!", btnChangeLang: "Change Language", langTitle: "Language", searchLang: "Search language...", futureLang: "More languages coming soon",
+                dragText: "Select a file from PC, Download online, or Drag & Drop file here"
+            }
+        };
+
+        let currentLang = 'ru';
+        let secretClickCount = 0;
+        let isDinoRunning = false;
+        let dinoGameActive = false; 
+
+        const availableLanguages = [
+            { code: 'ru', name: 'Русский' },
+            { code: 'en', name: 'English' }
+        ];
+
+        ipcRenderer.on('download-progress', (e, { percent }) => {
+            const activeFill = document.querySelector('.card-progress.active .card-progress-fill');
+            if (activeFill) activeFill.style.width = percent + '%';
+        });
+
+        function adjustCardHeight() {
+            const card = document.getElementById('mainCard');
+            if (document.getElementById('step-online').style.display === 'flex') {
+                card.style.height = '750px'; 
+            } else if (document.getElementById('step-connect').style.display === 'block') {
+                card.style.height = '450px'; 
+            } else if (document.getElementById('step-flash').style.display === 'block') {
+                card.style.height = '350px'; 
+            } else if (document.getElementById('step-result').style.display === 'block') {
+                card.style.height = '400px'; 
+            } else {
+                card.style.height = '480px'; 
+            }
+        }
+
+        // === ЯЗЫКИ ===
+        function filterLanguages(query) {
+            const list = document.getElementById('langList');
+            list.innerHTML = '';
+            const q = query.toLowerCase();
+
+            availableLanguages.forEach(lang => {
+                if (lang.name.toLowerCase().includes(q) || lang.code.includes(q)) {
+                    const div = document.createElement('div');
+                    div.className = `lang-item ${lang.code === currentLang ? 'active' : ''}`;
+                    div.innerHTML = `<span>${lang.name}</span> ${lang.code === currentLang ? '<span>✓</span>' : ''}`;
+                    div.onclick = () => {
+                        setLang(lang.code);
+                        document.getElementById('langModal').classList.remove('active');
+                    };
+                    list.appendChild(div);
+                }
+            });
+        }
+
+        function closeSettingsAndOpenLang() {
+            document.getElementById('settingsModal').classList.remove('active');
+            document.getElementById('langSearch').value = '';
+            filterLanguages('');
+            setTimeout(() => {
+                document.getElementById('langModal').classList.add('active');
+            }, 300);
+        }
+
+        // === АВТОРЫ (Загрузка с GitHub) ===
+        async function closeSettingsAndOpenAuthors() {
+            document.getElementById('settingsModal').classList.remove('active');
+            
+            const container = document.getElementById('authorsListContainer');
+            container.innerHTML = '<div style="text-align:center; padding: 20px;">Загрузка / Loading...</div>';
+            
+            try {
+                // RAW-ССЫЛКА НА authors.json
+                const jsonUrl = "https://raw.githubusercontent.com/Flux-developer42/Flux-Flasher/main/authors.json"; 
+                const authorsList = await ipcRenderer.invoke('fetch-authors-list', jsonUrl);
+                
+                container.innerHTML = ''; // Очищаем после загрузки
+                const t = translations[currentLang];
+
+                authorsList.forEach(author => {
+                    const card = document.createElement('div');
+                    card.className = 'author-card';
+                    
+                    const role = currentLang === 'en' ? author.role_en : author.role_ru;
+                    const desc = currentLang === 'en' ? author.desc_en : author.desc_ru;
+                    
+                    let nameHtml = author.name;
+                    if (author.link) {
+                        nameHtml = `<a href="${author.link}" target="_blank">${author.name}</a>`;
+                    }
+
+                    // Если у автора нет роли (например, DeepSeek AI), выводим только имя и описание
+                    if (author.role_ru === "Разработчик программы" || author.role_ru === "Разработчик / Владелец") {
+                        card.innerHTML = `
+                            <h4>${role}</h4>
+                            <p>${desc}</p>
+                            <p style="margin-top: 8px; font-size: 0.9rem;">${nameHtml}</p>
+                        `;
+                    } else {
+                        // Для авторов прошивок
+                        card.innerHTML = `
+                            <h4>${role}</h4>
+                            <p class="thanks-text">${t.authThanks}</p>
+                            <p>${t.author} ${nameHtml}</p>
+                        `;
+                    }
+                    
+                    container.appendChild(card);
+                });
+
+            } catch (error) {
+                container.innerHTML = `<div style="text-align:center; color: #ef4444; padding: 20px;">
+                    <strong>Ошибка загрузки авторов:</strong><br>
+                    <span style="font-size: 0.8rem;">${error.message}</span>
+                </div>`;
+            }
+
+            setTimeout(() => {
+                document.getElementById('authorsModal').classList.add('active');
+            }, 300); 
+        }
+
+        function goBack() {
+            ['step-online', 'step-connect', 'step-flash', 'step-result'].forEach(id => {
+                const el = document.getElementById(id);
+                el.style.display = 'none';
+                el.classList.remove('step-container');
+            });
+            const selectStep = document.getElementById('step-select');
+            selectStep.style.display = 'block';
+            void selectStep.offsetWidth; 
+            selectStep.classList.add('step-container');
+            document.getElementById('btnBack').classList.remove('visible');
+            document.getElementById('fileInfo').innerText = translations[currentLang].fileNotSelected;
+            document.getElementById('fileInfo').classList.remove('active');
+            window._selectedFilePath = null;
+            
+            document.getElementById('customSelectOptions').classList.remove('open');
+            document.getElementById('customSelectTrigger').classList.remove('active');
+            
+            adjustCardHeight();
+        }
+
+        function updateBackButton(visible) {
+            if (visible) document.getElementById('btnBack').classList.add('visible');
+            else document.getElementById('btnBack').classList.remove('visible');
+        }
+
+        function handleSecretClick() {
+            secretClickCount++;
+            if (secretClickCount >= 5) { secretClickCount = 0; if (!dinoGameActive) startDinoGame(); }
+        }
+
+        function updateTranslations() {
+            const t = translations[currentLang];
+            document.getElementById('title').innerText = t.title;
+            document.getElementById('subtitle').innerText = t.subtitle;
+            if (!document.getElementById('fileInfo').classList.contains('active')) document.getElementById('fileInfo').innerText = t.fileNotSelected;
+            document.getElementById('btnLocalText').innerText = t.btnLocal;
+            document.getElementById('btnOnlineText').innerText = t.btnOnline;
+            document.getElementById('onlineTitle').innerText = t.onlineTitle;
+            document.getElementById('portTitle').innerText = t.portTitle;
+            document.getElementById('btnFlashText').innerText = t.btnFlash;
+            document.getElementById('btnRestartText').innerText = t.btnRestart;
+            document.getElementById('settingsTitle').innerText = t.settings;
+            document.getElementById('lblTheme').innerText = t.lblTheme;
+            document.getElementById('lblLang').innerText = t.lblLang;
+            document.getElementById('lblFont').innerText = t.lblFont;
+            document.getElementById('themeDark').innerText = t.themeDark;
+            document.getElementById('themeLight').innerText = t.themeLight;
+            document.getElementById('btnCloseSettings').innerText = t.btnClose;
+            document.getElementById('dragText').innerText = t.dragText;
+            
+            document.getElementById('btnOpenLang').innerText = t.btnChangeLang;
+            document.getElementById('langTitle').innerText = t.langTitle;
+            document.getElementById('langSearch').placeholder = t.searchLang;
+            document.getElementById('futureNote').innerText = t.futureLang;
+            document.getElementById('btnCloseLang').innerText = t.btnClose;
+
+            document.getElementById('btnOpenAuthors').innerText = t.btnAuthors;
+            document.getElementById('authorsTitle').innerText = t.authorsTitle;
+            document.getElementById('btnCloseAuthors').innerText = t.btnClose;
+
+            document.getElementById('go-title').innerText = t.gameOver;
+            document.getElementById('go-score-text').innerText = t.score;
+            document.getElementById('go-high-text').innerText = t.highScore;
+            document.getElementById('btn-reset-dino').innerText = t.btnRestartGame;
+            document.getElementById('btn-close-dino').innerText = t.btnCloseGame;
+
+            updateCustomSelectUI();
+            
+            if (document.getElementById('step-online').style.display === 'flex') {
+                renderFirmwareList();
+            }
+            if (document.getElementById('langModal').classList.contains('active')) {
+                filterLanguages(document.getElementById('langSearch').value);
+            }
+        }
+
+        function setTheme(theme) {
+            document.body.setAttribute('data-theme', theme);
+            document.getElementById('themeDark').classList.toggle('active', theme === 'dark');
+            document.getElementById('themeLight').classList.toggle('active', theme === 'light');
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            updateTranslations();
+        }
+
+        function setFontSize(size) { document.documentElement.style.setProperty('--font-size', size + 'px'); }
+        function toggleSettings() { document.getElementById('settingsModal').classList.toggle('active'); }
+
+        // === КАСТОМНЫЙ СЕЛЕКТ ===
+        document.getElementById('customSelectTrigger').onclick = (e) => {
+            e.stopPropagation();
+            document.getElementById('customSelectOptions').classList.toggle('open');
+            document.getElementById('customSelectTrigger').classList.toggle('active');
+        };
+
+        window.onclick = () => {
+            document.getElementById('customSelectOptions').classList.remove('open');
+            document.getElementById('customSelectTrigger').classList.remove('active');
+        };
+
+        function updateCustomSelectUI() {
+            const container = document.getElementById('customSelectOptions');
+            container.innerHTML = '';
+            const t = translations[currentLang];
+            
+            if (availablePorts.length === 0) {
+                container.innerHTML = `<div class="custom-option">${t.noPorts}</div>`;
+                document.getElementById('selectedPortText').innerText = t.noPorts;
+                return;
+            }
+
+            if (!selectedPortValue && availablePorts.length > 0) {
+                selectedPortValue = availablePorts[0].path;
+            }
+
+            availablePorts.forEach(p => {
+                const div = document.createElement('div');
+                div.className = `custom-option ${p.path === selectedPortValue ? 'selected' : ''}`;
+                
+                if (currentLang === 'en') {
+                    div.innerText = `${p.path} (Serial Port)`;
+                } else {
+                    div.innerText = `${p.path} (Последовательный порт)`;
+                }
+
+                div.onclick = (e) => {
+                    e.stopPropagation();
+                    selectedPortValue = p.path;
+                    document.getElementById('selectedPortText').innerText = div.innerText;
+                    document.getElementById('customSelectOptions').classList.remove('open');
+                    document.getElementById('customSelectTrigger').classList.remove('active');
+                    updateCustomSelectUI();
+                };
+                
+                container.appendChild(div);
+                if (p.path === selectedPortValue) {
+                    document.getElementById('selectedPortText').innerText = div.innerText;
+                }
+            });
+        }
+
+        async function updatePorts() {
+            availablePorts = await ipcRenderer.invoke('get-ports');
+            updateCustomSelectUI();
+        }
+
+        // === DRAG & DROP ЛОГИКА ===
+        const dropZone = document.getElementById('dropZone');
+
+        dropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.add('dragover');
+        });
+
+        dropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+        });
+
+        dropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            dropZone.classList.remove('dragover');
+
+            if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
+                const file = e.dataTransfer.files[0];
+                if (file.name.endsWith('.bin')) {
+                    handleFileSelection(file);
+                } else {
+                    alert(translations[currentLang].errorDl);
+                }
+            }
+        });
+
+        function handleFileSelection(file) {
+            document.getElementById('fileInfo').innerText = `📦 ${file.name}`;
+            document.getElementById('fileInfo').classList.add('active');
+            document.getElementById('step-select').style.display = 'none';
+            document.getElementById('step-connect').style.display = 'block';
+            updateBackButton(true); 
+            updatePorts();
+            
+            window._selectedFilePath = file.path || file.name;
+            
+            adjustCardHeight();
+        }
+
+        document.getElementById('btnSelectLocal').onclick = () => document.getElementById('fileInput').click();
+
+        document.getElementById('fileInput').onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            handleFileSelection(file);
+        };
+
+        window.downloadFirmware = async (btnElement, url, name) => {
+            const card = btnElement.closest('.firmware-card');
+            const progressBar = card.querySelector('.card-progress');
+            const progressFill = card.querySelector('.card-progress-fill');
+            
+            progressBar.classList.add('active');
+            progressFill.style.width = '0%';
+            btnElement.disabled = true;
+            btnElement.innerText = translations[currentLang].downloading;
+
+            try {
+                const path = await ipcRenderer.invoke('download-file', { url: url, isExtra: false });
+                window._selectedFilePath = path;
+                document.getElementById('fileInfo').innerText = `📦 ${translations[currentLang].ready} ${name}`;
+                document.getElementById('fileInfo').classList.add('active');
+                document.getElementById('step-online').style.display = 'none';
+                document.getElementById('step-connect').style.display = 'block';
+                updateBackButton(true); 
+                updatePorts();
+                adjustCardHeight();
+            } catch (e) { 
+                alert(translations[currentLang].errorDl); 
+                btnElement.disabled = false;
+                btnElement.innerText = translations[currentLang].btnDownload;
+                progressBar.classList.remove('active');
+            }
+        };
+
+        window.downloadExtra = async (btnElement, url) => {
+            const card = btnElement.closest('.firmware-card');
+            const progressBar = card.querySelector('.card-progress');
+            const progressFill = card.querySelector('.card-progress-fill');
+            
+            progressBar.classList.add('active');
+            progressFill.style.width = '0%';
+            btnElement.disabled = true;
+            btnElement.innerText = translations[currentLang].downloading;
+
+            try {
+                const downloadName = url.split('/').pop();
+                await ipcRenderer.invoke('download-file', { url: url, isExtra: true, defaultName: downloadName });
+                
+                btnElement.innerText = 'Скачано! / Downloaded!';
+                setTimeout(() => {
+                    btnElement.disabled = false;
+                    btnElement.innerText = translations[currentLang].btnExtra;
+                    progressBar.classList.remove('active');
+                }, 2000);
+                
+                alert(translations[currentLang].btnExtra + ": OK! (Check Downloads folder)");
+            } catch (e) {
+                alert("Error: " + e.message);
+                btnElement.disabled = false;
+                btnElement.innerText = translations[currentLang].btnExtra;
+                progressBar.classList.remove('active');
+            }
+        };
+
+        window.openGuide = (name) => {
+            const fw = loadedFirmwares.find(f => f.name === name);
+            if (fw) {
+                let textToShow = fw.guide;
+                if (currentLang === 'en' && fw.guide_en) {
+                    textToShow = fw.guide_en;
+                }
+                if (textToShow) {
+                    document.getElementById('guideTitle').innerText = name + " — " + translations[currentLang].btnInstruction;
+                    document.getElementById('guideText').innerText = textToShow;
+                    document.getElementById('guideModal').classList.add('active');
+                } else {
+                    alert("Инструкция не найдена.");
+                }
+            }
+        };
+
+        function renderFirmwareList() {
+            const list = document.getElementById('firmwareList');
+            list.innerHTML = ''; 
+            const t = translations[currentLang];
+            
+            loadedFirmwares.forEach(fw => {
+                const card = document.createElement('div');
+                card.className = 'firmware-card';
+                
+                const hasExtra = fw.extraFile;
+                const extraBtnHtml = hasExtra ? `
+                    <button class="card-btn btn-extra" onclick="event.stopPropagation(); downloadExtra(this, '${fw.extraFile}')">
+                        ${t.btnExtra}
+                    </button>
+                ` : '';
+
+                const displayDesc = (currentLang === 'en' && fw.desc_en) ? fw.desc_en : fw.desc;
+
+                card.innerHTML = `
+                    <div class="card-title">${fw.name}</div>
+                    <div class="card-desc">${displayDesc}</div>
+                    <div class="card-author">${t.author} <a href="${fw.authorLink}" target="_blank" style="color: var(--btn-primary); text-decoration: none; font-weight: bold;" onclick="event.stopPropagation();">${fw.author}</a></div>
+                    
+                    <div class="card-actions">
+                        <button class="card-btn btn-download" onclick="event.stopPropagation(); downloadFirmware(this, '${fw.url}', '${fw.name}')">${t.btnDownload}</button>
+                        ${extraBtnHtml}
+                    </div>
+
+                    <button class="card-btn btn-instruction" onclick="event.stopPropagation(); openGuide('${fw.name}')">
+                        ${t.btnInstruction}
+                    </button>
+                    
+                    <div class="card-progress">
+                        <div class="card-progress-fill"></div>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        document.getElementById('btnDownloadFirmware').onclick = async () => {
+            const list = document.getElementById('firmwareList');
+            list.innerHTML = '<div style="text-align:center; padding: 20px;">Загрузка / Loading...</div>';
+            
+            document.getElementById('step-select').style.display = 'none';
+            document.getElementById('step-online').style.display = 'flex';
+            updateBackButton(true); 
+            adjustCardHeight();
+
+            try {
+                // RAW-ССЫЛКА НА firmwares.json
+                const jsonUrl = "https://raw.githubusercontent.com/Flux-developer42/Flux-Flasher/main/firmwares.json";
+                loadedFirmwares = await ipcRenderer.invoke('fetch-firmware-list', jsonUrl);
+                renderFirmwareList();
+
+            } catch (error) {
+                list.innerHTML = `<div style="text-align:center; color: #ef4444; padding: 20px;">
+                    <strong>Ошибка загрузки списка:</strong><br>
+                    <span style="font-size: 0.8rem;">${error.message}</span>
+                </div>`;
+            }
+        };
+
+        document.getElementById('btnFlash').onclick = () => {
+            if (!selectedPortValue) return alert("Select port");
+            if (!window._selectedFilePath) return alert("Ошибка: файл прошивки не найден. Попробуйте скачать заново.");
+
+            document.getElementById('step-connect').style.display = 'none';
+            document.getElementById('step-flash').style.display = 'block';
+            document.getElementById('progressContainer').style.display = 'block';
+            document.getElementById('progressFill').style.width = '0%';
+            document.getElementById('flashStatus').innerText = translations[currentLang].connecting;
+            
+            ipcRenderer.send('flash-device', { port: selectedPortValue, filePath: window._selectedFilePath });
+            updateBackButton(false); 
+            adjustCardHeight();
+        };
+
+        ipcRenderer.on('flash-progress', (e, percent) => {
+            document.getElementById('progressFill').style.width = percent + '%';
+            document.getElementById('flashStatus').innerText = `${translations[currentLang].writing} ${percent}%`;
+        });
+
+        ipcRenderer.on('flash-result', (e, data) => {
+            document.getElementById('step-flash').style.display = 'none';
+            document.getElementById('step-result').style.display = 'block';
+            const t = translations[currentLang];
+            document.getElementById('resultText').innerHTML = data.ok ? 
+                `<div class="result-success">${t.success}</div>` : 
+                `<div class="result-error">${t.error}</div>`;
+            updateBackButton(true); 
+            adjustCardHeight();
+        });
+
+        document.getElementById('btnRestart').onclick = () => { goBack(); };
+
+        window.addEventListener('load', () => setTimeout(adjustCardHeight, 50));
+        updateTranslations();
+
+        // === ИГРА ===
+        function startDinoGame() {
+            dinoGameActive = true; isDinoRunning = true;
+            const container = document.getElementById('dino-game-container');
+            const canvas = document.getElementById('dino-canvas');
+            const ctx = canvas.getContext('2d');
+            container.style.display = 'block';
+            document.getElementById('game-over-screen').classList.remove('active');
+            canvas.width = window.innerWidth; canvas.height = 120;
+
+            let highScore = localStorage.getItem('dinoHighScore') || 0;
+            let score = 0; let speed = 6; let frame = 0; let groundY = 100;
+            let dino = { x: 50, y: groundY - 30, w: 20, h: 30, dy: 0, jump: false, color: getComputedStyle(document.body).getPropertyValue('--text-main').trim() };
+            let obstacles = [];
+            let clouds = [{x: 400, y: 30}, {x: 700, y: 60}];
+
+            function reset() { score = 0; speed = 6; frame = 0; dino.y = groundY - 30; dino.dy = 0; dino.jump = false; obstacles = []; document.getElementById('game-over-screen').classList.remove('active'); if (!isDinoRunning) { isDinoRunning = true; loop(); } }
+            function jump() { if (!dino.jump && isDinoRunning) { dino.dy = -10; dino.jump = true; } }
+            window.onkeydown = (e) => { if (e.code === 'Space' || e.code === 'ArrowUp') jump(); };
+            canvas.onclick = jump;
+
+            function loop() {
+                if (!isDinoRunning) return;
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctx.strokeStyle = dino.color; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(0, groundY); ctx.lineTo(canvas.width, groundY); ctx.stroke();
+                ctx.fillStyle = 'rgba(150, 150, 150, 0.4)';
+                clouds.forEach(c => { c.x -= speed * 0.2; if (c.x < -50) { c.x = canvas.width + Math.random() * 200; c.y = Math.random() * 50 + 10; } ctx.fillRect(c.x, c.y, 40, 10); ctx.fillRect(c.x + 10, c.y - 5, 20, 5); });
+                dino.y += dino.dy; if (dino.y < groundY - 30) dino.dy += 0.6; else { dino.y = groundY - 30; dino.dy = 0; dino.jump = false; }
+                ctx.fillStyle = dino.color; ctx.fillRect(dino.x, dino.y, dino.w, dino.h);
+                ctx.fillStyle = getComputedStyle(document.body).getPropertyValue('--bg-color').trim(); ctx.fillRect(dino.x + 12, dino.y + 5, 4, 4);
+                if (frame % Math.max(40, Math.floor(100 - speed * 5)) === 0) { let type = Math.random() > 0.7 ? 2 : 1; obstacles.push({ x: canvas.width, y: groundY - 20, w: 15 * type, h: 20, color: dino.color }); }
+                obstacles.forEach((obs, index) => {
+                    obs.x -= speed; ctx.fillStyle = obs.color; ctx.fillRect(obs.x, obs.y, obs.w, obs.h); ctx.fillRect(obs.x - 5, obs.y + 5, 5, 10); ctx.fillRect(obs.x + obs.w, obs.y + 8, 5, 8);
+                    if (obs.x < dino.x + dino.w && obs.x + obs.w > dino.x && obs.y < dino.y + dino.h && obs.y + obs.h > dino.y) endGame();
+                    if (obs.x + obs.w < 0) { obstacles.splice(index, 1); score++; }
+                });
+                ctx.fillStyle = dino.color; ctx.font = '16px monospace'; ctx.fillText(`Score: ${score}  High: ${highScore}`, canvas.width - 220, 25);
+                frame++; if (frame % 100 === 0) speed += 0.2;
+                if (isDinoRunning) requestAnimationFrame(loop);
+            }
+
+            function endGame() {
+                isDinoRunning = false;
+                if (score > highScore) { highScore = score; localStorage.setItem('dinoHighScore', highScore); }
+                document.getElementById('go-score').innerText = score; document.getElementById('go-high').innerText = highScore; document.getElementById('game-over-screen').classList.add('active');
+            }
+
+            window.resetDinoGame = () => reset();
+            window.closeDinoGame = () => { isDinoRunning = false; dinoGameActive = false; container.style.display = 'none'; window.onkeydown = null; };
+            loop();
+        }
+    </script>
+</body>
+</html>

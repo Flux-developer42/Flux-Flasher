@@ -5,7 +5,9 @@
     "name": "DeepSeek AI",
     "desc_ru": "Искусственный интеллект. Код, интерфейс, логика.",
     "desc_en": "Artificial Intelligence. Code, UI, logic.",
-    "link": ""
+    "link": "",
+    "tiktok": "",
+    "tiktokLink": ""
   },
   {
     "role_ru": "Разработчик / Владелец",
@@ -13,7 +15,9 @@
     "name": "@Shk1pEr42",
     "desc_ru": "Идейный вдохновитель и тестировщик.",
     "desc_en": "Ideological inspirer and tester.",
-    "link": "https://t.me/Shk1pEr42"
+    "link": "https://t.me/Shk1pEr42",
+    "tiktok": "",
+    "tiktokLink": ""
   },
   {
     "role_ru": "Bruce 1.16",
@@ -21,7 +25,9 @@
     "name": "@photorezistor",
     "desc_ru": "Спасибо!",
     "desc_en": "Thanks!",
-    "link": "https://t.me/photorezistor"
+    "link": "https://t.me/photorezistor",
+    "tiktok": "@photorezistor",
+    "tiktokLink": "https://www.tiktok.com/@photorezistor"
   },
   {
     "role_ru": "Bruce 1.14",
@@ -29,7 +35,9 @@
     "name": "@photorezistor",
     "desc_ru": "Спасибо!",
     "desc_en": "Thanks!",
-    "link": "https://t.me/photorezistor"
+    "link": "https://t.me/photorezistor",
+    "tiktok": "@photorezistor",
+    "tiktokLink": "https://www.tiktok.com/@photorezistor"
   },
   {
     "role_ru": "Launcher port for flux",
@@ -37,7 +45,9 @@
     "name": "@wilas0",
     "desc_ru": "Спасибо!",
     "desc_en": "Thanks!",
-    "link": "https://t.me/wilas0"
+    "link": "https://t.me/wilas0",
+    "tiktok": "",
+    "tiktokLink": ""
   },
   {
     "role_ru": "Marauder BETA",
@@ -45,14 +55,18 @@
     "name": "@wilas0",
     "desc_ru": "Спасибо!",
     "desc_en": "Thanks!",
-    "link": "https://t.me/wilas0"
+    "link": "https://t.me/wilas0",
+    "tiktok": "",
+    "tiktokLink": ""
   },
   {
     "role_ru": "Flipper port for flux",
     "role_en": "Flipper port for flux",
-    "name": "@baza_dimentiya",
+    "name": "@d1metri1",
     "desc_ru": "Спасибо!",
     "desc_en": "Thanks!",
-    "link": "https://t.me/BaZa_dimentiya"
+    "link": "https://t.me/BaZa_dimentiya",
+    "tiktok": "@d1metri1",
+    "tiktokLink": "https://www.tiktok.com/@d1metri1"
   }
 ]

@@ -6,6 +6,8 @@
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Fluxe1-1.16.bin",
     "author": "@photorezistor",
     "authorLink": "https://t.me/photorezistor",
+    "tiktok": "@photorezistor",
+    "tiktokLink": "https://www.tiktok.com/@photorezistor",
     "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
     "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
   },
@@ -16,6 +18,8 @@
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/bruce1.14.bin",
     "author": "@photorezistor",
     "authorLink": "https://t.me/photorezistor",
+    "tiktok": "@photorezistor",
+    "tiktokLink": "https://www.tiktok.com/@photorezistor",
     "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
     "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
   },
@@ -26,6 +30,8 @@
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Launcher-flux.1.bin",
     "author": "@wilas0",
     "authorLink": "https://t.me/wilas0",
+    "tiktok": "",
+    "tiktokLink": "",
     "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
     "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
   },
@@ -36,6 +42,8 @@
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/ESP32Marauder_v1.18.0_FLUX1_r3_gps_displayfix.1.bin",
     "author": "@wilas0",
     "authorLink": "https://t.me/wilas0",
+    "tiktok": "",
+    "tiktokLink": "",
     "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
     "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
   },
@@ -44,8 +52,10 @@
     "desc": "Порт Flipper Zero для Flux (требуется SD-карта)",
     "desc_en": "Flipper Zero port for Flux (SD card required)",
     "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/FLUX_FLIPPER_PORT.bin",
-    "author": "@baza_dimentiya",
+    "author": "@d1metri1",
     "authorLink": "https://t.me/BaZa_dimentiya",
+    "tiktok": "@d1metri1",
+    "tiktokLink": "https://www.tiktok.com/@d1metri1",
     "extraFile": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/SDCARD.UPDATE.zip",
     "guide": "1. Скачайте дополнительные файлы (Они сохраняются в папку \"Загрузки\").\n2. Отформатируйте SD-Карту.\n3. Распакуйте архив в корень SD-Карты.\n4. После успешной распаковки архива вставьте SD-Карту обратно в устройство.\n5. Включите устройство с зажатой клавишей \"<\" и подключите к ПК.\n6. Выполните стандартную процедуру установки прошивки (нажмите \"Скачать\", затем \"Установить\").\n7. Не отключайте устройство во время прошивки.",
     "guide_en": "1. Download the extra files (They are saved in the \"Downloads\" folder).\n2. Format the SD card.\n3. Unpack the archive to the root of the SD card.\n4. After successfully unpacking the archive, insert the SD card back into the device.\n5. Turn on the device while holding the \"<\" button and connect it to the PC.\n6. Perform the standard firmware installation procedure (click \"Download\", then \"Install\").\n7. Do not disconnect the device during flashing."

@@ -1,0 +1,58 @@
+[
+  {
+    "role_ru": "Разработчик программы",
+    "role_en": "Program Developer",
+    "name": "DeepSeek AI",
+    "desc_ru": "Искусственный интеллект. Код, интерфейс, логика.",
+    "desc_en": "Artificial Intelligence. Code, UI, logic.",
+    "link": ""
+  },
+  {
+    "role_ru": "Разработчик / Владелец",
+    "role_en": "Developer / Owner",
+    "name": "@Shk1pEr42",
+    "desc_ru": "Идейный вдохновитель и тестировщик.",
+    "desc_en": "Ideological inspirer and tester.",
+    "link": "https://t.me/Shk1pEr42"
+  },
+  {
+    "role_ru": "Bruce 1.16",
+    "role_en": "Bruce 1.16",
+    "name": "@photorezistor",
+    "desc_ru": "Спасибо!",
+    "desc_en": "Thanks!",
+    "link": "https://t.me/photorezistor"
+  },
+  {
+    "role_ru": "Bruce 1.14",
+    "role_en": "Bruce 1.14",
+    "name": "@photorezistor",
+    "desc_ru": "Спасибо!",
+    "desc_en": "Thanks!",
+    "link": "https://t.me/photorezistor"
+  },
+  {
+    "role_ru": "Launcher port for flux",
+    "role_en": "Launcher port for flux",
+    "name": "@wilas0",
+    "desc_ru": "Спасибо!",
+    "desc_en": "Thanks!",
+    "link": "https://t.me/wilas0"
+  },
+  {
+    "role_ru": "Marauder BETA",
+    "role_en": "Marauder BETA",
+    "name": "@wilas0",
+    "desc_ru": "Спасибо!",
+    "desc_en": "Thanks!",
+    "link": "https://t.me/wilas0"
+  },
+  {
+    "role_ru": "Flipper port for flux",
+    "role_en": "Flipper port for flux",
+    "name": "@baza_dimentiya",
+    "desc_ru": "Спасибо!",
+    "desc_en": "Thanks!",
+    "link": "https://t.me/BaZa_dimentiya"
+  }
+]

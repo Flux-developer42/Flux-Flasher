@@ -56,7 +56,7 @@ npx electron-builder --win portable
 
 
 
-# Flux ESP32-S3 Flasher
+# Flux Flasher
 
 **Легкое и удобное десктопное приложение для прошивки Flux.**
 

@@ -74,32 +74,32 @@
   ],
   "m5stickc_plus2": [
     {
-      "name": "NEMO Plus 2",
+      "name": "NEMO Plus 2 v3.2.2",
       "desc": "Многофункциональная прошивка для M5StickC Plus 2",
       "desc_en": "Multi-functional firmware for M5StickC Plus 2",
       "author": "bmorcelli",
       "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
-      "url": "https://example.com/m5nemo_plus2.bin"
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/M5Nemo-v3.2.2-M5StickCPlus2.bin"
     }
   ],
   "m5stickc": [
     {
-      "name": "NEMO StickC",
-      "desc": "Прошивка NEMO для оригинального M5StickC",
-      "desc_en": "NEMO firmware for original M5StickC",
+      "name": "NEMO StickC S3 v3.2.2",
+      "desc": "Прошивка NEMO для M5StickC S3",
+      "desc_en": "NEMO firmware for M5StickC S3",
       "author": "bmorcelli",
       "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
-      "url": "https://example.com/m5nemo_stickc.bin"
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/M5Nemo-v3.2.2-M5StickS3.bin"
     }
   ],
   "cardputer_adv": [
     {
-      "name": "Bruce Cardputer Adv",
-      "desc": "Пентест-прошивка для Cardputer Adv",
-      "desc_en": "Pentest firmware for Cardputer Adv",
-      "author": "Bruce",
-      "authorLink": "https://github.com/pr3y/Bruce",
-      "url": "https://example.com/bruce_cardputer_adv.bin"
+      "name": "NEMO Cardputer v3.2.2",
+      "desc": "Многофункциональная прошивка для Cardputer Adv",
+      "desc_en": "Multi-functional firmware for Cardputer Adv",
+      "author": "bmorcelli",
+      "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/M5Nemo-v3.2.2-M5Cardputer.bin"
     }
   ],
   "other": [

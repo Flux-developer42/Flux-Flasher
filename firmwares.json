@@ -243,36 +243,6 @@
       "authorLink": "https://github.com/pr3y/Bruce",
       "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
-    },
-    {
-      "name": "Bruce for ESP32-S3 (PSRAM)",
-      "desc": "Прошивка Bruce для ESP32-S3 (DevKitC-1) с PSRAM",
-      "desc_en": "Bruce firmware for ESP32-S3 (DevKitC-1) with PSRAM",
-      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-s3-devkitc-1-psram.1.bin",
-      "author": "Bruce",
-      "authorLink": "https://github.com/pr3y/Bruce",
-      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
-      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
-    },
-    {
-      "name": "Madara Board OS",
-      "desc": "Прошивка для Madara-board",
-      "desc_en": "Firmware for Madara-board",
-      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/MADARA-BOARD.bin",
-      "author": "Madara",
-      "authorLink": "https://github.com",
-      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
-      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
-    },
-    {
-      "name": "Flipper Oled Custom",
-      "desc": "Прошивка для Flipper Oled (ESP32-S3)",
-      "desc_en": "Firmware for Flipper Oled (ESP32-S3)",
-      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Flipper.Oled.bin",
-      "author": "Flipper",
-      "authorLink": "https://github.com",
-      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
-      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }
   ],
   "esp32c5": [
@@ -293,6 +263,30 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-c5-tft.bin",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    }
+  ],
+  "flipper_oled": [
+    {
+      "name": "Flipper Oled Custom",
+      "desc": "Прошивка для Flipper Oled (ESP32-S3)",
+      "desc_en": "Firmware for Flipper Oled (ESP32-S3)",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Flipper.Oled.bin",
+      "author": "Flipper",
+      "authorLink": "https://github.com",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    }
+  ],
+  "madara_board": [
+    {
+      "name": "Madara Board OS",
+      "desc": "Прошивка для Madara-board",
+      "desc_en": "Firmware for Madara-board",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/MADARA-BOARD.bin",
+      "author": "Madara",
+      "authorLink": "https://github.com",
       "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }

@@ -7,7 +7,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Fluxel-1.16.bin",
       "author": "@photorezistor",
       "authorLink": "https://t.me/photorezistor",
-      "authorType": "telegram",
       "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
       "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
     },
@@ -18,7 +17,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/bruce1.14.bin",
       "author": "@photorezistor",
       "authorLink": "https://t.me/photorezistor",
-      "authorType": "telegram",
       "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
       "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
     },
@@ -29,7 +27,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Launcher-flux.1.bin",
       "author": "@wilas0",
       "authorLink": "https://t.me/wilas0",
-      "authorType": "telegram",
       "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
       "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
     },
@@ -40,7 +37,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/ESP32Marauder_v1.18.0_FLUX1_r3_gps_displayfix.1.bin",
       "author": "@wilas0",
       "authorLink": "https://t.me/wilas0",
-      "authorType": "telegram",
       "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",
       "guide_en": "1. Turn on the device while holding the \"<\" button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading the firmware, click \"Install\".\n5. Do not disconnect the device from the PC during the entire flashing process.\n6. If the installation is successful, disconnect the device from the PC."
     },
@@ -51,7 +47,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/FLUX_FLIPPER_PORT.bin",
       "author": "@baza_dimentiya",
       "authorLink": "https://t.me/BaZa_dimentiya",
-      "authorType": "telegram",
       "extraFile": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/SDCARD.UPDATE.zip",
       "guide": "1. Скачайте дополнительные файлы (Они сохраняются в папку \"Загрузки\").\n2. Отформатируйте SD-Карту.\n3. Распакуйте архив в корень SD-Карты.\n4. После успешной распаковки архива вставьте SD-Карту обратно в устройство.\n5. Включите устройство с зажатой клавишей \"<\" и подключите к ПК.\n6. Выполните стандартную процедуру установки прошивки (нажмите \"Скачать\", затем \"Установить\").\n7. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Download the extra files (They are saved in the \"Downloads\" folder).\n2. Format the SD card.\n3. Unpack the archive to the root of the SD card.\n4. After successfully unpacking the archive, insert the SD card back into the device.\n5. Turn on the device while holding the \"<\" button and connect it to the PC.\n6. Perform the standard firmware installation procedure (click \"Download\", then \"Install\").\n7. Do not disconnect the device during flashing."
@@ -65,7 +60,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-lilygo-t-embed-cc1101.1.bin",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
-      "authorType": "github",
       "guide": "1. Включите устройство с зажатой кнопкой BOOT.\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки нажмите \"Установить\".\n5. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Turn on the device while holding the BOOT button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading, click \"Install\".\n5. Do not disconnect the device during flashing."
     },
@@ -76,7 +70,6 @@
       "url": "https://github.com/CapibaraZero/fw/releases/download/0.5.2/capibaraZero_0_5_2_lilygo_t_embed_cc1101.zip",
       "author": "CapibaraZero",
       "authorLink": "https://github.com/CapibaraZero",
-      "authorType": "github",
       "guide": "1. Включите устройство с зажатой кнопкой BOOT.\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки нажмите \"Установить\".\n5. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Turn on the device while holding the BOOT button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading, click \"Install\".\n5. Do not disconnect the device during flashing."
     },
@@ -87,7 +80,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/flipperzero.t-embed.bin",
       "author": "Flipper Zero",
       "authorLink": "https://github.com/flipperdevices",
-      "authorType": "github",
       "extraFile": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/SDCARD.UPDATE.zip",
       "guide": "1. Скачайте дополнительные файлы (Они сохраняются в папку \"Загрузки\").\n2. Отформатируйте SD-Карту.\n3. Распакуйте архив в корень SD-Карты.\n4. Вставьте SD-Карту обратно в устройство.\n5. Включите устройство с зажатой кнопкой BOOT и подключите к ПК.\n6. Нажмите \"Скачать\", затем \"Установить\".",
       "guide_en": "1. Download the extra files (saved in \"Downloads\").\n2. Format the SD card.\n3. Unpack the archive to the root of the SD card.\n4. Insert the SD card back into the device.\n5. Turn on the device while holding BOOT and connect to PC.\n6. Click \"Download\", then \"Install\"."
@@ -101,7 +93,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Launcher-lilygo-t-embed-all.bin",
       "author": "Lilygo",
       "authorLink": "https://github.com/Xinyuan-LilyGO",
-      "authorType": "github",
       "guide": "1. Включите устройство с зажатой кнопкой BOOT.\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки нажмите \"Установить\".\n5. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Turn on the device while holding the BOOT button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading, click \"Install\".\n5. Do not disconnect the device during flashing."
     },
@@ -112,7 +103,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-lilygo-t-n",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
-      "authorType": "github",
       "guide": "1. Включите устройство с зажатой кнопкой BOOT.\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки нажмите \"Установить\".\n5. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Turn on the device while holding the BOOT button.\n2. Connect the device to the PC.\n3. Select the firmware.\n4. After downloading, click \"Install\".\n5. Do not disconnect the device during flashing."
     }
@@ -125,7 +115,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/launcher-hub.plus.2.3-0-0.bin",
       "author": "M5Stack",
       "authorLink": "https://github.com/m5stack",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -136,7 +125,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-m5stack-cplus2.2.bin",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -147,7 +135,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/M5Nemo-v3.2.2-M5StickCPlus2.bin",
       "author": "bmorcelli",
       "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -158,7 +145,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/esp32_marauder_v1_20_0_20261028_m5stickc_plus2.bin",
       "author": "Marauder",
       "authorLink": "https://github.com/justcallmekoko/ESP32Marauder",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }
@@ -171,7 +157,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Launcher-m5stack-sticks3.bin",
       "author": "M5Stack",
       "authorLink": "https://github.com/m5stack",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -182,7 +167,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-m5stack-sticks3.bin",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -193,7 +177,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/nemo-firmware-sticks3.v3-2-1.bin",
       "author": "bmorcelli",
       "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -204,7 +187,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/evil-sticks3.v1-5-1-beta.bin",
       "author": "Evil",
       "authorLink": "https://github.com",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }
@@ -217,7 +199,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Launcher-m5stack-cardputer.bin",
       "author": "M5Stack",
       "authorLink": "https://github.com/m5stack",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -228,7 +209,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-m5stack-cardputer.bin",
       "author": "Bruce",
       "authorLink": "https://github.com/pr3y/Bruce",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -239,7 +219,6 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/M5Nemo-v3.2.2-M5Cardputer.bin",
       "author": "bmorcelli",
       "authorLink": "https://github.com/bmorcelli/m5stick-nemo",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     },
@@ -250,42 +229,72 @@
       "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/esp32-marauder-custom-ui-external-display.1-18-0.bin",
       "author": "Marauder",
       "authorLink": "https://github.com/justcallmekoko/ESP32Marauder",
-      "authorType": "github",
       "guide": "1. Подключите устройство к ПК.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
       "guide_en": "1. Connect the device to the PC.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }
   ],
-  "other": [
+  "esp32s3": [
     {
-      "name": "Тестовая прошивка ESP32-S3",
-      "desc": "Универсальная прошивка для чипа ESP32-S3",
-      "desc_en": "Universal firmware for ESP32-S3 chip",
-      "author": "Admin",
-      "authorLink": "https://t.me/admin",
-      "authorType": "telegram",
-      "url": "https://example.com/universal_esp32s3.bin"
-    }
-  ],
-  "flipper_oled": [
+      "name": "Bruce for ESP32-S3",
+      "desc": "Прошивка Bruce для ESP32-S3 (DevKitC-1)",
+      "desc_en": "Bruce firmware for ESP32-S3 (DevKitC-1)",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-s3-devkitc-1.1.bin",
+      "author": "Bruce",
+      "authorLink": "https://github.com/pr3y/Bruce",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    },
     {
-      "name": "Flipper Oled Custom",
-      "desc": "Кастомная прошивка для Flipper Oled (чип ESP32-S2)",
-      "desc_en": "Custom firmware for Flipper Oled (ESP32-S2 chip)",
-      "author": "Твой Знакомый",
-      "authorLink": "https://t.me/@your_friend_tg",
-      "authorType": "telegram",
-      "url": "https://example.com/flipper_oled_fw.bin"
-    }
-  ],
-  "madara_board": [
+      "name": "Bruce for ESP32-S3 (PSRAM)",
+      "desc": "Прошивка Bruce для ESP32-S3 (DevKitC-1) с PSRAM",
+      "desc_en": "Bruce firmware for ESP32-S3 (DevKitC-1) with PSRAM",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-s3-devkitc-1-psram.1.bin",
+      "author": "Bruce",
+      "authorLink": "https://github.com/pr3y/Bruce",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    },
     {
       "name": "Madara Board OS",
-      "desc": "Официальная прошивка для Madara-board (чип ESP32-S3)",
-      "desc_en": "Official firmware for Madara-board (ESP32-S3 chip)",
-      "author": "Твой Знакомый",
-      "authorLink": "https://t.me/@your_friend_tg",
-      "authorType": "telegram",
-      "url": "https://example.com/madara_board_os.bin"
+      "desc": "Прошивка для Madara-board",
+      "desc_en": "Firmware for Madara-board",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/MADARA-BOARD.bin",
+      "author": "Madara",
+      "authorLink": "https://github.com",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    },
+    {
+      "name": "Flipper Oled Custom",
+      "desc": "Прошивка для Flipper Oled (ESP32-S3)",
+      "desc_en": "Firmware for Flipper Oled (ESP32-S3)",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Flipper.Oled.bin",
+      "author": "Flipper",
+      "authorLink": "https://github.com",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    }
+  ],
+  "esp32c5": [
+    {
+      "name": "Bruce for ESP32-C5",
+      "desc": "Прошивка Bruce для ESP32-C5",
+      "desc_en": "Bruce firmware for ESP32-C5",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-c5.bin",
+      "author": "Bruce",
+      "authorLink": "https://github.com/pr3y/Bruce",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
+    },
+    {
+      "name": "Bruce for ESP32-C5-TFT",
+      "desc": "Прошивка Bruce для ESP32-C5 (с TFT-экраном)",
+      "desc_en": "Bruce firmware for ESP32-C5 (with TFT display)",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Bruce-esp32-c5-tft.bin",
+      "author": "Bruce",
+      "authorLink": "https://github.com/pr3y/Bruce",
+      "guide": "1. Подключите устройство по USB. Для входа в режим загрузки зажмите кнопку BOOT и нажмите RST.\n2. Выберите прошивку.\n3. После скачки нажмите \"Установить\".\n4. Не отключайте устройство во время прошивки.",
+      "guide_en": "1. Connect the device via USB. To enter boot mode, hold the BOOT button and press RST.\n2. Select the firmware.\n3. After downloading, click \"Install\".\n4. Do not disconnect the device during flashing."
     }
   ]
 }

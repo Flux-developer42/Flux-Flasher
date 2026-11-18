@@ -4,7 +4,6 @@
 
 ![Version](https://img.shields.io/badge/version-3.9.9_BETA-00f0ff)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 🚀 What's New in 3.9.9 BETA
 
@@ -74,7 +73,6 @@ We are working on a native mobile application for Android. It will allow you to 
 
 ![Version](https://img.shields.io/badge/version-3.9.9_BETA-00f0ff)
 ![Platform](https://img.shields.io/badge/platform-Windows-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 🚀 Что нового в 3.9.9 BETA
 

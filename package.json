@@ -1,7 +1,7 @@
 {
   "name": "flux-flasher",
-  "version": "3.0.2",
-  "description": "Flux-Flasher",
+  "version": "3.9.9",
+  "description": "Flux Flasher (Beta)",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -9,28 +9,37 @@
   },
   "author": "winki",
   "license": "ISC",
-  "devDependencies": {
-    "electron": "^28.0.0",
-    "electron-builder": "^24.9.1",
-    "electron-rebuild": "^3.2.9"
-  },
   "dependencies": {
+    "mime-types": "^3.0.2",
     "serialport": "^12.0.0"
   },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^24.13.3"
+  },
   "build": {
-    "appId": "com.winki.esp32flasher",
-    "productName": "FluxFlasher",
-    "copyright": "Copyright © 2026 winki. All rights reserved.",
-    "artifactName": "${productName} ${version}.${ext}",
-    "icon": "C:\\Users\\winki\\Desktop\\esp32-flasher\\ico\\Flux_Flasher.ico",
-    "asar": true,
-    "asarUnpack": [
-      "**/node_modules/serialport/**/*",
-      "**/node_modules/@serialport/**/*"
-    ],
+    "appId": "com.flux.flasher",
+    "productName": "Flux Flasher",
+    "directories": {
+      "output": "dist"
+    },
     "win": {
       "target": "portable",
-      "icon": "C:\\Users\\winki\\Desktop\\esp32-flasher\\ico\\Flux_Flasher.ico"
+      "icon": "ico/FluxFlasher.ico"
+    },
+    "extraResources": [
+      "Fonts/**/*",
+      "logo/**/*",
+      "ico/**/*",
+      "game/**/*",
+      "sound_effect/**/*"
+    ],
+    "portable": {
+      "artifactName": "FluxFlasher_${version}_beta.exe"
     }
+  },
+  "allowScripts": {
+    "@serialport/bindings-cpp@12.0.1": true,
+    "electron@28.3.3": true
   }
 }

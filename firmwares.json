@@ -4,7 +4,7 @@
       "name": "Bruce 1.16",
       "desc": "Стабильная версия прошивки Bruce",
       "desc_en": "Stable version of Bruce firmware",
-      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Fluxel-1.16.bin",
+      "url": "https://github.com/Flux-developer42/Flux-firmware2.0/releases/download/Fluxe_Firmware/Fluxe1-1.16.bin",
       "author": "@photorezistor",
       "authorLink": "https://t.me/photorezistor",
       "guide": "1. Включите устройство с зажатой клавишей \"<\".\n2. Подключите устройство к ПК.\n3. Выберите прошивку.\n4. После скачки прошивки нажмите на кнопку \"Установить\".\n5. Не отключайте устройство от ПК во время всего процесса прошивки.\n6. Если установка прошла успешно, отключайте устройство от ПК.",

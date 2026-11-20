@@ -126,11 +126,11 @@ We are working on a native mobile application for Android. It will allow you to 
 ## 👥 Авторы и благодарности
 
 * **Разработчик программы:** DeepSeek AI
-* **Владелец проекта / Разработчик:** [@Shk1pEr42](https://t.me/Shk1pEr42)
+* **Владелец проекта / Разработчик:** [Telegram](https://t.me/Shk1pEr42)
 * **Авторы прошивок:**
-  * Bruce 1.16 и 1.14: [@photorezistor](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
-  * Launcher port for flux/Marauder: [@wilas0](https://t.me/wilas0)
-  * Flipper port for flux: [@BaZa_dimentiya](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
+  * Bruce 1.16 и 1.14: [@Telegram](https://t.me/photorezistor) | [TikTok](https://www.tiktok.com/@photorezistor)
+  * Launcher port for flux/Marauder: [Telegram](https://t.me/wilas0)
+  * Flipper port for flux: [Telegram](https://t.me/BaZa_dimentiya) | [TikTok](https://www.tiktok.com/@d1metri1)
 
 ## 📢 Ссылки
 
